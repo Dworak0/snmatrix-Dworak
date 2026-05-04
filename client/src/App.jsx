@@ -31,10 +31,8 @@ function App() {
     };
 
     const handleDelete = (id) => {
-        if (window.confirm("Are you sure you want to delete this user?")) {
-            fetch(`${API_URL}/${id}`, { method: 'DELETE' })
-                .then(() => fetchUsers());
-        }
+        fetch(`${API_URL}/${id}`, { method: 'DELETE' })
+            .then(() => fetchUsers());
     };
 
     const handleSubmit = (e) => {
@@ -51,6 +49,7 @@ function App() {
             if (response.ok) {
                 setView('list');
                 fetchUsers();
+                setSelectedUser(null);
                 setFormData({ email: '', lastName: '', firstName: '', phone: '', employeeType: 'Contractor', companyName: '', active: true });
             } else {
                 alert("Could not save user. Check the server console for errors.");
